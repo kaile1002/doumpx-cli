@@ -1,0 +1,44 @@
+<template>
+  <view class="mask entry" wx:style="{{styles}}" wx:if="{{isShow}}" bindtap="toggleMask">
+    <slot></slot>
+  </view>
+</template>
+<script>
+import { createComponent } from '@mpxjs/core'
+
+createComponent({
+  properties: {
+    styles: {
+      type: Object,
+      value: {}
+    }
+  },
+  data: function () {
+    return {
+      isShow: false
+    }
+  },
+  methods: {
+    toggleMask () {
+      this.isShow = !this.isShow
+      this.triggerEvent('maskType', this.isShow)
+    }
+  }
+
+})
+</script>
+<style lang="less" scoped>
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    line-height: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+  }
+  .entry {
+    animation: fadeIn 0.35s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+</style>

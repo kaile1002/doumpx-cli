@@ -1,0 +1,124 @@
+<template>
+  <k-mask wx:ref="kMask" bindmaskType="onMaskType">
+    <view class="popup-wrapper" wx:class="{{isShow?'popup-wrapper-anim':''}}">
+      <view class="wx-dialog">
+        <view class="wx-dialog-title">
+          登录或注册
+          <image
+            class="wx-dialog-close"
+            src="https://cdn.doumistatic.com/209,01b4296b2a18c171.png"
+            catchtap="toggleMask"
+          />
+        </view>
+        <van-button custom-class="wx-dialog-button" type="primary" catchtap="login">
+          微信极速登录
+        </van-button>
+        <van-button custom-class="wx-dialog-button wx-dialog-account-button"> 账户登录 </van-button>
+        <view class="wx-dialog-agreement-tips">
+          登录代表您已经同意XXX<text class="agreement">《用户协议》</text>和<text class="agreement"
+            >《隐私协议》</text
+          >
+        </view>
+      </view>
+    </view>
+  </k-mask>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+createComponent({
+  data: {
+    isShow: false
+  },
+  ready () { },
+  methods: {
+    toggleMask () {
+      this.$refs.kMask.toggleMask()
+      this.isShow = !this.isShow
+    },
+    onMaskType (e) {
+      console.log('onMaskType', e)
+    },
+    login () {
+      console.log('login')
+    }
+  }
+})
+</script>
+<style lang="less">
+  .popup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1001;
+    .wx-dialog {
+      width: 80%;
+      max-width: 600rpx;
+      padding-bottom: 20rpx;
+      background-color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      overflow: hidden;
+      z-index: 1002;
+      &-title {
+        font-size: 16px;
+        line-height: 22px;
+        padding: 40rpx 52rpx 48rpx;
+        position: relative;
+      }
+      &-close {
+        display: block;
+        width: 28rpx;
+        height: 28rpx;
+        padding: 24rpx;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      &-button {
+        width: 80% !important;
+        height: 80rpx !important;
+        margin-bottom: 20rpx !important;
+        line-height: 2.5 !important;
+        font-size: 16px !important;
+        border-radius: 2px !important;
+      }
+      &-account-button {
+        border: none;
+      }
+      &-agreement-tips {
+        width: 80%;
+        margin: 0 auto;
+        line-height: 40rpx;
+        font-size: 24rpx;
+        text-align: left;
+        color: #999999;
+        .agreement {
+          display: inline-block;
+          color: blue;
+          font-size: 24rpx;
+        }
+      }
+    }
+  }
+  .popup-wrapper-anim {
+    animation-name: pulse;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in;
+  }
+</style>
+
+<script type="application/json">
+  {
+    "usingComponents": {
+      "van-button": "@vant/weapp/button/index",
+      "k-mask": "../widget/k-mask.mpx"
+    }
+  }
+</script>

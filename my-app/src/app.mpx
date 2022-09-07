@@ -1,0 +1,73 @@
+<script>
+  import mpx, { createApp } from '@mpxjs/core'
+  import apiProxy from '@mpxjs/api-proxy'
+
+  mpx.use(apiProxy, { usePromise: true })
+
+  createApp({
+    onLaunch () {
+    }
+  })
+</script>
+
+<style lang="less" src="./less/common.less"></style>
+
+<script type="application/json">
+  {
+    "pages": [
+      "./pages/index",
+      "./pages/mine"
+    ],
+    "window":{
+      "navigationBarTextStyle": "black",
+      "navigationBarTitleText": "斗米找工作",
+      "navigationBarBackgroundColor": "#ffffff",
+      "backgroundColor": "#f5f5f5",
+      "navigationStyle":"custom"
+    },
+    "usingComponents":{
+      "van-button": "@vant/weapp/button/index"
+    },
+    "tabBar":{
+      "color":"#999",
+      "selectedColor":"#404040",
+      "backgroundColor":"#ffffff",
+      "list":[
+        {
+          "pagePath":"pages/index",
+          "text":"首页",
+          "iconPath":"assets/images/nav_home.png",
+          "selectedIconPath": "assets/images/nav_home_active.png"
+        },
+        {
+          "pagePath":"pages/mine",
+          "text":"我的",
+          "iconPath":"assets/images/nav_avatar.png",
+          "selectedIconPath": "assets/images/nav_avatar_active.png"
+        }
+      ]
+    },
+    "networkTimeout": {
+      "request": 10000,
+      "connectSocket": 10000,
+      "uploadFile": 10000,
+      "downloadFile": 10000
+    },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "我们将为你推荐附近的优质职位"
+      }
+    }
+  }
+</script>
+
+<!--也可以通过以下形式用js输出json，便于书写注释和使用条件编译-->
+
+<!--<script name="json">-->
+<!--  // 可以写注释，通过defs注入的常量做一些判断之类的操作-->
+<!--  module.exports = {-->
+<!--    pages: [-->
+<!--      './pages/index'-->
+<!--    ]-->
+<!--  }-->
+<!--</script>-->

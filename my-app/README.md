@@ -1,24 +1,22 @@
-# vue-template
+# mpx-template
 
-## Project setup
-```
-npm install
-```
+> mpx template
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Dev
 
-### Compiles and minifies for production
-```
+```bash
+# install dep
+npm i
+
+# for dev
+npm run watch
+
+# for online
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+npm script规范 [build|watch]:[dev|prod]:[cross|web|none]
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+build默认prod，watch默认dev。另单独提供了build:dev和watch:prod，用于单次构建分析看未压缩代码分析问题和持续压缩代码便于大体积项目真机调试。
+
+建议自行调整cross的目标。npm-run-all是为了兼容windows下无法同时执行两个npm script，若不需要转web平台，可考虑去掉。
